@@ -18,6 +18,8 @@ int main() {
   display_board(board);
   cout << "Done!" << "\n\n";
 
+  /*
+  
   cout << "=================== Question 1 ===================" << "\n\n";
 
   load_board("easy.dat", board);
@@ -31,22 +33,70 @@ int main() {
   if (!is_complete(board))
     cout << "NOT ";
   cout << "complete." << "\n\n";
-
-  /*
   
+  */
+
   cout << "=================== Question 2 ===================" << "\n\n";
 
   load_board("easy.dat", board);
 
   // Should be OK
   cout << "Putting '1' into I8 is ";
-  if (!make_move("I8", '1', board)) 
+  if (!make_move("I8", 1, board)) 
     cout << "NOT ";
   cout << "a valid move. The board is:" << '\n';
   display_board(board);
 
-	// write more tests
+  // 5 more test cases:
 
+  cout << "Putting '8' into A1 is ";
+  if (!make_move("A1", 8, board)) 
+    cout << "NOT ";
+  cout << "a valid move. The board is:" << '\n';
+  display_board(board);
+
+  cout << "Putting '3' into E5 is ";
+  if (!make_move("E5", 3, board)) 
+    cout << "NOT ";
+  cout << "a valid move. The board is:" << '\n';
+  display_board(board);
+
+  cout << "Putting '6' into B3 is ";
+  if (!make_move("B3", 6, board)) 
+    cout << "NOT ";
+  cout << "a valid move. The board is:" << '\n';
+  display_board(board);
+
+  cout << "Putting '7' into d7 is ";
+  if (!make_move("d7", 7, board)) 
+    cout << "NOT ";
+  cout << "a valid move. The board is:" << '\n';
+  display_board(board);
+  
+  cout << "Putting '9' into D2 is ";
+  if (!make_move("D2", 9, board)) 
+    cout << "NOT ";
+  cout << "a valid move. The board is:" << '\n';
+  display_board(board);
+
+  
+
+  /* Code to test many numbers in a specific position: */
+
+  int digit;
+
+  cout << "\n Enter the digit you would like to insert in H6: ";
+  cin >> digit;
+  
+  cout << "\n\nPutting \'" << digit <<"\' into H6 is ";
+  if (!make_move("H6", digit, board))
+    cout << "NOT ";
+  cout << "a valid move.\n\n The board is:" << "\n\n";
+  display_board(board);
+
+  
+/*
+  
   cout << "=================== Question 3 ===================" << "\n\n";
 
   load_board("easy.dat", board);
@@ -55,7 +105,9 @@ int main() {
   else
     cout << "Save board failed." << '\n';
   cout << '\n';
-
+  
+  
+  
   cout << "=================== Question 4 ===================" << "\n\n";
 
   load_board("easy.dat", board);
