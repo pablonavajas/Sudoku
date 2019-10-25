@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include "sudoku.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -18,7 +19,6 @@ int main() {
   display_board(board);
   cout << "Done!" << "\n\n";
 
-  /*
   
   cout << "=================== Question 1 ===================" << "\n\n";
 
@@ -78,7 +78,7 @@ int main() {
   cout << "a valid move. The board is:" << '\n';
   display_board(board);
 
-  */
+  
 
   /* Code to test many numbers in a specific position: 
 
@@ -95,7 +95,7 @@ int main() {
 
   */
 
-  /*
+  
   cout << "=================== Question 3 ===================" << "\n\n";
 
   load_board("easy.dat", board);
@@ -105,7 +105,7 @@ int main() {
     cout << "Save board failed." << '\n';
   cout << '\n';
   
-  */
+  
   
   cout << "=================== Question 4 ===================" << "\n\n";
 
@@ -125,13 +125,43 @@ int main() {
     cout << "A solution cannot be found." << '\n';
   cout << '\n';
 
-	// write more tests
+  load_board("extratest.dat", board);
+  if (solve_board(board)) {
+    cout << "The 'extra test' board has a solution:" << '\n';
+    display_board(board);
+  } else 
+    cout << "A solution cannot be found." << '\n';
+  cout << '\n';
 
+  
   cout << "=================== Question 5 ===================" << "\n\n";
+  
+  load_board("mystery1.dat", board);
+  if (solve_board(board)) {
+    cout << "The 'mystery1' board has a solution:" << '\n';
+    display_board(board);
+  } else 
+    cout << "A solution cannot be found." << '\n';
+  cout << '\n';
 
-	// write more tests
 
-	
+  load_board("mystery3.dat", board);
+  if (solve_board(board)) {
+    cout << "The 'mystery3' board has a solution:" << '\n';
+    display_board(board);
+  } else 
+    cout << "A solution cannot be found." << '\n';
+  cout << '\n';
+  
+    
+  load_board("mystery2.dat", board);
+  if (solve_board(board)) {
+    cout << "The 'mystery2' board has a solution:" << '\n';
+    display_board(board);
+  } else 
+    cout << "A solution cannot be found for 'mistery2'." << '\n';
+   cout << '\n';
 
+    
   return 0;
 }

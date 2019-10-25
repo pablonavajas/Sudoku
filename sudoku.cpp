@@ -76,11 +76,11 @@ void display_board(const char board[9][9]) {
 
 bool is_complete(const char board[9][9]){
 
-  for (int row = 0; row < 9; row++) {
+  for (int row = 0; row < 9; row++) {                  //Iterate through all positions
 
     for (int col = 0; col < 9; col++) {
 
-      if (board[row][col] == '.'){
+      if (board[row][col] == '.'){                     //If empty space found: copy coordinates and return false
 	
 	return false;
       }
@@ -93,15 +93,15 @@ bool is_complete(const char board[9][9]){
 
 /* Exercise 2: Function that inserts a number at a specific position returning true. Alternatively, if the move or the position are invalid it returns flase and leaves the board unchanged. It uses five helper functions. */
 
-/* Helper Function that checks whether the input position is valid and modifies the values of the row and the column (NOTE: it allows the user to input low case characters to identify the row) */
+/* Helper Function that checks whether the input position is valid (NOTE: it allows the user to input low case characters to identify the row) */
 
 bool valid_position(int& row, int& col){
 
-  if ( col < 0 || col > 8 || row < 0 || row > 8){
+  if ( col < 0 || col > 8 || row < 0 || row > 8){      //Check if row and column fall out of board
 
-    if (row >= 32 && row <= 40) {
+    if (row >= 32 && row <= 40) {                      //Allow row to be specified using low-case letters
 
-      row -= 32;
+      row -= 32;                                       //Transfor low-case letters to adequate integer values
       return true;
     }
 
@@ -181,31 +181,31 @@ bool valid_move(int row, int col, char digit, char board[9][9]){
   return true;
 }
 
-/* SOLUTION: the function will convert the position string values into integers, and the input digit to a character. It will check whether the input digit is valid, returning false if it is not. It will then check if the position is valid and if the move is valid to make the move and return true. It will return false otherwise and leave the board unchanged. */
+/* SOLUTION: */
 
 bool make_move(const char position[], int int_digit, char board[9][9]){
-
-  int row = position[0];
-  int col = position[1];
+  
+  int row = position[0];                               //Convert string row into integer
+  int col = position[1];                               //Convert string column into integer
 
   row -= 65;
   col -= 49;
   
-  char digit = int_digit + '0';
+  char digit = int_digit + '0';                        //Convert input digit to character
   
-  if (int_digit > 9 || int_digit < 1) {
+  if (int_digit > 9 || int_digit < 1) {                //Check if input digit is not valid and return false
 
     return false;
   }
   
   else { 
-
-    if (valid_position(row, col) && valid_move(row, col, digit, board)) {
+   
+    if (valid_position(row, col) && valid_move(row, col, digit, board)) {     // Check if position and move are valid calling previous functions
       
-      board[row][col] = digit;
+      board[row][col] = digit;                         //If valid, modify board and return true
       return true;
     }
-    return false;
+    return false;                                      //Else, return false and leave the board unchanged
   }
 }
 
@@ -217,14 +217,14 @@ void copy_to(char board[9][9], ofstream& out){
 
   char character;
   
-  for (int row = 0; row < 9; row++){
+  for (int row = 0; row < 9; row++){                   //Loop over all positions
 
     for (int col = 0; col < 9; col++){
 
-      character = board[row][col];
-      out.put(character);
+      character = board[row][col];                     
+      out.put(character);                              //Output the character to the output stream
 
-      if (col == 8){
+      if (col == 8){                                   //Start new line at end of row
 
 	out.put('\n');
       }
@@ -232,27 +232,27 @@ void copy_to(char board[9][9], ofstream& out){
   }
 }
 
-/* SOLUTION: the solution includes a checking mechanism in case the stream operation was not successful */
+/* SOLUTION: */
 
 bool save_board(const char* filename, char board[9][9]){
 
   ofstream out(filename);
 
-  if (!out){
+  if (!out){                                           //Checking mechanism to avoid errors
 
     cout << "Failed!" << "\n";
     return false;
   }
 
-  copy_to(board,out);
-  out.close();
+  copy_to(board,out);                                  //Call helper function to copy values
+  out.close();                                         //Close output stream
   return true;
 }
 
 
 /* Exercise 4: recursive function that attempts to resolve the Sudoku puzzle */
 
-/* Helper Function that finds the row and column of an empty position */
+/* Helper Function equivalent to exercise 1 but returns the row and column of an empty position */
 
 bool empty_entry(char board[9][9], int& row, int& col){
 
@@ -269,35 +269,32 @@ bool empty_entry(char board[9][9], int& row, int& col){
   return false;
 }
 
-/* SOLUTION: the function will find an empty position and assig it a value (1-9)in a for loop. It will check if the move is valid (recalling our helper function from exercise 2). 
-If it is valid, it will assign that value to the position and call itself: 
-Next, it will try to fill the next empty position with a value (1-9) if it finds that there is no valid solution, it will unassign the value of the previous empty position and will try another value. 
-Once all positions are filled with valid numbers it will return true */
+/* SOLUTION: */
 
 
 bool solve_board(char board[9][9]){
-
+  
   int row, col;
 
-  if (!empty_entry(board, row, col)){
+  if (!empty_entry(board, row, col)){                  //Find empty row and column
 
-    return true;
+    return true;                                       //Return true if board is complete
   }
 
-  for (int digit = 1; digit <= 9; digit++){
+  for (int digit = 1; digit <= 9; digit++){            //Try values from 1 to 9
 
     char char_digit = digit + '0';
 
-    if (valid_move(row, col, char_digit, board)){
+    if (valid_move(row, col, char_digit, board)){      //Check if valid at row and column
 
-      board[row][col] = char_digit;
+      board[row][col] = char_digit;                    //If so, assign value to position
 
-      if (solve_board(board)){
+      if (solve_board(board)){                         //Call it self to check next empty position
 
 	return true;
       }
-      board[row][col] = '.';
+      board[row][col] = '.';                           //If not possible to fill all positions, unassign the value again
     }
   }
-  return false;
+  return false;                                        //If no valid value has been found return false
 }
