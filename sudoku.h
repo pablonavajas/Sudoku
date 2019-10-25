@@ -1,4 +1,4 @@
-/* Presupplied functions */
+/* Pre-supplied functions */
 
 void load_board(const char* filename, char board[9][9]);
 void display_board(const char board[9][9]);
@@ -15,3 +15,7 @@ bool make_move(const char position[], int int_digit, char board[9][9]);
 /* Solutions Exercise 3: */
 
 bool save_board(const char* filename, char board[9][9]);
+
+/* Solution Exercise 4: */
+
+bool solve_board(char board[9][9]);

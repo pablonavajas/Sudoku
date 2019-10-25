@@ -250,3 +250,54 @@ bool save_board(const char* filename, char board[9][9]){
 }
 
 
+/* Exercise 4: recursive function that attempts to resolve the Sudoku puzzle */
+
+/* Helper Function that finds the row and column of an empty position */
+
+bool empty_entry(char board[9][9], int& row, int& col){
+
+  for (row = 0; row < 9; row++){
+
+    for (col = 0; col < 9; col++){
+
+      if (board[row][col] == '.'){
+	
+	return true;
+      }
+    }
+  }
+  return false;
+}
+
+/* SOLUTION: the function will find an empty position and assig it a value (1-9)in a for loop. It will check if the move is valid (recalling our helper function from exercise 2). 
+If it is valid, it will assign that value to the position and call itself: 
+Next, it will try to fill the next empty position with a value (1-9) if it finds that there is no valid solution, it will unassign the value of the previous empty position and will try another value. 
+Once all positions are filled with valid numbers it will return true */
+
+
+bool solve_board(char board[9][9]){
+
+  int row, col;
+
+  if (!empty_entry(board, row, col)){
+
+    return true;
+  }
+
+  for (int digit = 1; digit <= 9; digit++){
+
+    char char_digit = digit + '0';
+
+    if (valid_move(row, col, char_digit, board)){
+
+      board[row][col] = char_digit;
+
+      if (solve_board(board)){
+
+	return true;
+      }
+      board[row][col] = '.';
+    }
+  }
+  return false;
+}

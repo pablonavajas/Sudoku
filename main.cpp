@@ -95,7 +95,7 @@ int main() {
 
   */
 
-  
+  /*
   cout << "=================== Question 3 ===================" << "\n\n";
 
   load_board("easy.dat", board);
@@ -105,7 +105,7 @@ int main() {
     cout << "Save board failed." << '\n';
   cout << '\n';
   
-  /*
+  */
   
   cout << "=================== Question 4 ===================" << "\n\n";
 
@@ -131,7 +131,7 @@ int main() {
 
 	// write more tests
 
-	*/
+	
 
   return 0;
 }
