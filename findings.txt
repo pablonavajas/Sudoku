@@ -2,6 +2,27 @@ Summarise your findings here (see specification).
 
 Mistery2 - Impossible to resolve
 
-Mistery1 -
+Mistery1 - This sudoku is extremely hard. The function was modified to
+include a counter, it would add 1 for every loop it underwent (minor
+modification outlined below). The printed number of counts was: 3793687
 
-Mistery3 -
+Mistery3 - This sudoku is of "hard" difficulty. For the modified
+function it returned a count of: 126954
+
+
+Modification to keep track of loops:
+
+bool solve_board(char board[9][9], int& count){
+
+  (...)
+
+  for (int digit = 1; digit <= 9; digit++){
+
+    char char_digit = digit + '0';
+
+    count +=1;
+
+    if (valid_move(row, col, char_digit, board)){
+
+  (...)
+}
