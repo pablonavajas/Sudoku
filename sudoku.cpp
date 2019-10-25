@@ -209,6 +209,44 @@ bool make_move(const char position[], int int_digit, char board[9][9]){
   }
 }
 
+/* Exercise 3: function to output the 2D character array to a file named filename (using one helper function) */
 
+/* Helper Function to copy the content of the board to the output file */
+
+void copy_to(char board[9][9], ofstream& out){
+
+  char character;
+  
+  for (int row = 0; row < 9; row++){
+
+    for (int col = 0; col < 9; col++){
+
+      character = board[row][col];
+      out.put(character);
+
+      if (col == 8){
+
+	out.put('\n');
+      }
+    }
+  }
+}
+
+/* SOLUTION: the solution includes a checking mechanism in case the stream operation was not successful */
+
+bool save_board(const char* filename, char board[9][9]){
+
+  ofstream out(filename);
+
+  if (!out){
+
+    cout << "Failed!" << "\n";
+    return false;
+  }
+
+  copy_to(board,out);
+  out.close();
+  return true;
+}
 
 

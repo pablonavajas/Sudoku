@@ -34,7 +34,6 @@ int main() {
     cout << "NOT ";
   cout << "complete." << "\n\n";
   
-  */
 
   cout << "=================== Question 2 ===================" << "\n\n";
 
@@ -79,9 +78,9 @@ int main() {
   cout << "a valid move. The board is:" << '\n';
   display_board(board);
 
-  
+  */
 
-  /* Code to test many numbers in a specific position: */
+  /* Code to test many numbers in a specific position: 
 
   int digit;
 
@@ -94,8 +93,8 @@ int main() {
   cout << "a valid move.\n\n The board is:" << "\n\n";
   display_board(board);
 
-  
-/*
+  */
+
   
   cout << "=================== Question 3 ===================" << "\n\n";
 
@@ -106,7 +105,7 @@ int main() {
     cout << "Save board failed." << '\n';
   cout << '\n';
   
-  
+  /*
   
   cout << "=================== Question 4 ===================" << "\n\n";
 
